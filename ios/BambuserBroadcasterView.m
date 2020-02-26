@@ -200,8 +200,8 @@
 
 -(void)snapshotTaken:(UIImage *)image {
   if (self.onPictureSaved) {
-    NSData *imgData = UIImagePNGRepresentation(image);
-    NSString *imgPath = [NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"img%f", [[NSDate date] timeIntervalSince1970]]];
+    NSData *imgData = UIImageJPEGRepresentation(image, 1);
+    NSString *imgPath = [NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"img%f.jpg", [[NSDate date] timeIntervalSince1970]]];
     if ([imgData writeToFile:imgPath atomically:YES]) {
       self.onPictureSaved(@{@"filePath": imgPath});
     }
