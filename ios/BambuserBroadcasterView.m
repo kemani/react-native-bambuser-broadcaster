@@ -203,7 +203,8 @@
     NSData *imgData = UIImageJPEGRepresentation(image, 1);
     NSString *imgPath = [NSTemporaryDirectory() stringByAppendingString:[NSString stringWithFormat:@"img%f.jpg", [[NSDate date] timeIntervalSince1970]]];
     if ([imgData writeToFile:imgPath atomically:YES]) {
-      self.onPictureSaved(@{@"filePath": imgPath});
+      NSURL *fileURL = [NSURL fileURLWithPath:imgPath];
+      self.onPictureSaved(@{@"filePath": [fileURL absoluteString]});
     }
   }
 }
